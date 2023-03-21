@@ -60,7 +60,7 @@ class sparse_vector_t {
 };
 
 
-bool IsNotZero(const double val, const double eps = EPS) {
+bool sparse_vector_t::IsNotZero(const double val, const double eps = EPS) const {
   return fabs(val) > eps;
 }
 
