@@ -56,7 +56,7 @@ class sparse_vector_t {
   int nz_;            // nº de valores distintos de cero = tamaño del vector
   int n_;             // tamaño del vector original
 
-  bool IsNotZero(const double, const double = EPS) const;
+  //bool IsNotZero(const double, const double = EPS) const;
 };
 
 
