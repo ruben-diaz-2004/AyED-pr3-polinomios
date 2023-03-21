@@ -71,12 +71,12 @@ sparse_vector_t::sparse_vector_t(const vector_t<double>& v, const double eps)
     : pv_(), nz_(0), n_(0) {
   n_ = v.get_size();
   for (int i{0}; i < v.get_size(); ++ i) {
-    if(IsNotZero(v.get_val(i), eps)) ++nz_;
+    if(IsNotZero(v.get_val(i), EPS)) ++nz_;
   }
   pv_.resize(nz_);
   int number{0};
   for (int i{0}; i < n_ && number < nz_; ++i) {
-    if (IsNotZero(v.get_val(i), eps)) {
+    if (IsNotZero(v.get_val(i), EPS)) {
       pv_.at(number).set(v.get_val(i), i);
       ++number;
     }
