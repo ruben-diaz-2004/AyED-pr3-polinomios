@@ -37,34 +37,45 @@ template<class T> class pair_t {
   int inx_;
 };
 
-
+// constructor
 template<class T> pair_t<T>::pair_t() : val_(), inx_(-1) {}
 
+// constructor con parámetros
 template<class T> pair_t<T>::pair_t(T val, int inx) : val_(val), inx_(inx) {}
 
+// destructor
 template<class T> pair_t<T>::~pair_t() {}
 
+/**
+ * Setter
+ * @param val, inx. Valor e índice
+*/
 template<class T> void pair_t<T>::set(T val, int inx) {
   val_ = val;
   inx_ = inx;
 }
 
+// getter del índice
 template<class T> int pair_t<T>::get_inx() const {
   return inx_;
 }
 
+// getter del valor
 template<class T> T pair_t<T>::get_val() const {
   return val_;
 }
 
+// E/S
 template<class T> std::istream& pair_t<T>::read(std::istream& is) {
   return is >> inx_ >> val_;
 }
 
+// E/S
 template<class T> std::ostream& pair_t<T>::write(std::ostream& os) const {
   return os << "(" << inx_ << ":" << val_ << ")";
 }
 
+// sobrecarga del operador <<
 template<class T> std::ostream& operator<<(std::ostream& os, const pair_t<T>& p) {
   p.write(os);
   return os;

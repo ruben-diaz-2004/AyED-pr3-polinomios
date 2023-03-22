@@ -56,7 +56,7 @@ template<class T> class vector_t {
   void destroy(void);
 };
 
-
+// contructor con parámetros
 template<class T> vector_t<T>::vector_t(const int n) : v_(NULL), sz_(n) {
   build();
 }
@@ -76,10 +76,12 @@ template<class T> vector_t<T>& vector_t<T>::operator=(const vector_t<T>& w) {
   return *this;
 }
 
+// destructor
 template<class T> vector_t<T>::~vector_t() {
   destroy();
 }
 
+// método privado que llama el contructor
 template<class T> void vector_t<T>::build() {
   v_ = NULL;
   if (sz_ != 0) {
@@ -88,6 +90,7 @@ template<class T> void vector_t<T>::build() {
   }
 }
 
+// método privado que llama el destructor
 template<class T> void vector_t<T>::destroy() {
   if (v_ != NULL) {
     delete[] v_;
@@ -96,44 +99,55 @@ template<class T> void vector_t<T>::destroy() {
   sz_ = 0;
 }
 
+/**
+ * Cambia el tamaño del vector
+ * @param n. Nuevo tamaño del vector
+*/
 template<class T> void vector_t<T>::resize(const int n) {
   destroy();
   sz_ = n;
   build();
 }
 
+// getter del valor
 template<class T> inline T vector_t<T>::get_val(const int i) const {
   assert(i >= 0 && i < get_size());
   return v_[i];
 }
 
+// getter del tamaño
 template<class T> inline int vector_t<T>::get_size() const {
   return sz_;
 }
 
+// setter del valor
 template<class T> void vector_t<T>::set_val(const int i, const T d) {
   assert(i >= 0 && i < get_size());
   v_[i] = d;
 }
 
+// getter/setter
 template<class T> T& vector_t<T>::at(const int i) {
   assert(i >= 0 && i < get_size());
   return v_[i];
 }
 
+// getter/setter
 template<class T> T& vector_t<T>::operator[](const int i) {
   return at(i);
 }
 
+// getter/setter constante
 template<class T> const T& vector_t<T>::at(const int i) const {
   assert(i >= 0 && i < get_size());
   return v_[i];
 }
 
+// getter/setter constante
 template<class T> const T& vector_t<T>::operator[](const int i) const {
   return at(i);
 }
-
+// E/S
 template<class T> void vector_t<T>::read(std::istream& is) {
   is >> sz_;
   resize(sz_);
@@ -141,6 +155,7 @@ template<class T> void vector_t<T>::read(std::istream& is) {
     is >> at(i);
 }
 
+// E/S
 template<class T> void vector_t<T>::write(std::ostream& os) const {
   os << get_size() << ": [ ";
   for (int i = 0; i < get_size(); i++)
@@ -148,11 +163,13 @@ template<class T> void vector_t<T>::write(std::ostream& os) const {
   os << " ]" << std::endl;
 }
 
+// sobrecarga del operador >>
 template<class T> std::istream& operator>>(std::istream& is, vector_t<T>& v) {
   v.read(is);
   return is;
 }
 
+// sobrecarga del operador <<
 template<class T> std::ostream& operator<<(std::ostream& os,
 					   const vector_t<T>& v) {
   v.write(os);
