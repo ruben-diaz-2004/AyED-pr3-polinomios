@@ -59,7 +59,10 @@ class sparse_vector_t {
   //bool IsNotZero(const double, const double = EPS) const;
 };
 
-
+/**
+ * Comprueba si un valor es distinto de 0
+ * @param val, eps. Valor a comprobar y error permitido.
+*/
 bool IsNotZero(const double val, const double eps = EPS) {
   return fabs(val) > eps;
 }
@@ -67,6 +70,9 @@ bool IsNotZero(const double val, const double eps = EPS) {
 sparse_vector_t::sparse_vector_t(const int n) : pv_(n), nz_(0), n_(n) {}
 
 // FASE II
+/**
+ * Constructor con parámetros
+*/
 sparse_vector_t::sparse_vector_t(const vector_t<double>& v, const double eps)
     : pv_(), nz_(0), n_(0) {
   n_ = v.get_size();
@@ -97,30 +103,41 @@ sparse_vector_t& sparse_vector_t::operator=(const sparse_vector_t& w) {
   return *this;
 }
 
+// Destructor
 sparse_vector_t::~sparse_vector_t() {}
 
+/**
+ * Getter del número de elementos no nulos
+*/
 inline int sparse_vector_t::get_nz() const {
   return nz_;
 }
 
+/**
+ * Getter del tamaño original del vector
+*/
 inline int sparse_vector_t::get_n() const {
   return n_;
 }
 
+// getter-setter
 pair_double_t& sparse_vector_t::at(const int i) {
   assert(i >= 0 && i < get_nz());
   return pv_[i];
 }
 
+// getter-setter
 pair_double_t& sparse_vector_t::operator[](const int i) {
   return at(i);
 }
 
+// const getter-setter
 const pair_double_t& sparse_vector_t::at(const int i) const {
   assert(i >= 0 && i < get_nz());
   return pv_[i];
 }
 
+// const getter-setter
 const pair_double_t& sparse_vector_t::operator[](const int i) const {
   return at(i);
 }
